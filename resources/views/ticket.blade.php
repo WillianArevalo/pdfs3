@@ -1,29 +1,29 @@
 @extends('layouts.app', ['title' => $dte->identificacion->codigoGeneracion])
 @section('content')
 
-    <body class="font-sans w-[54mm] m-0 p-[1mm]">
+    <body style="width: 54mm; margin:0px; padding:1mm; font-family: sans-serif;">
 
-        <div class="text-center font-bold text-[9pt]">
+        <div style="text-align: center; font-size: 9pt; font-weight: 700;">
             {{ $dte->emisor->nombre }}
         </div>
-        <div class="text-center text-[6pt]">
+        <div style="text-align:center; font-size: 6pt;">
             {{ $dte->emisor->direccion->complemento }}
         </div>
-        <div class="text-center font-bold text-[6pt]">
+        <div style="text-align:center; font-size: 6pt; font-weight: 700;">
             Código de Generación
         </div>
-        <div class="text-center text-[6pt]">
+        <div style="text-align:center; font-size: 6pt;"">
             {{ $dte->identificacion->codigoGeneracion }}
         </div>
         @if ($dte->identificacion->ambiente == '00')
-            <div class="text-center text-[6pt] text-red-500">
+            <div style="text-align:center; font-size: 6pt; color:#ef4444">
                 ESTE DOCUMENTO ES DE PRUEBAS, NO TIENE VALIDEZ LEGAL
             </div>
         @endif
-        <div class="text-[6pt]">
-            <div class="font-bold">Fecha:</div> {{ $dte->identificacion->fecEmi }}<br>
-            <div class="font-bold">Interno:</div> {{ $dte->identificacion->numeroControl }}<br>
-            <div class="font-bold">Cliente:</div> {{ $dte->receptor->nombre }}<br>
+        <div style="font-size: 6pt;">
+            <div style="font-weight: 700" style="font-weight: 700">Fecha:</div> {{ $dte->identificacion->fecEmi }}<br>
+            <div style="font-weight: 700">Interno:</div> {{ $dte->identificacion->numeroControl }}<br>
+            <div style="font-weight: 700">Cliente:</div> {{ $dte->receptor->nombre }}<br>
             <div>
                 @if ($dte->identificacion->tipoDte == '01')
                     {{ $dte->receptor->numDocumento }}
@@ -31,26 +31,27 @@
                     {{ $dte->receptor->nit }}
                 @endif
                 <br>
-                <div class="font-bold">Correo:</div> {{ $dte->receptor->correo }} <br>
-                <div class="font-bold">Teléfono:</div> {{ $dte->receptor->telefono }}
+                <div style="font-weight: 700">Correo:</div> {{ $dte->receptor->correo }} <br>
+                <div style="font-weight: 700">Teléfono:</div> {{ $dte->receptor->telefono }}
             </div>
 
-            <table class="w-[54mm] border-collapse mt-[10mm]">
+            <table style="margin-top: 10mm; width: 54mm; border-collapse: collapse;">
                 <thead>
                     <tr>
-                        <th class="text-left border-b-2 border-black">Código</th>
-                        <th class="text-left border-b-2 border-black">Cantidad</th>
-                        <th class="text-left border-b-2 border-black">Precio</th>
-                        <th class="text-left border-b-2 border-black">Subtotal</th>
+                        <th style="border-bottom: 2px solid #000000; text-align: left">Código</th>
+                        <th style="border-bottom: 2px solid #000000; text-align: left">Cantidad</th>
+                        <th style="border-bottom: 2px solid #000000; text-align: left">Precio</th>
+                        <th style="border-bottom: 2px solid #000000; text-align: left">Subtotal</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($dte->cuerpoDocumento as $item)
                         <tr>
-                            <td class="border-b border-black">{{ $item->codigo }}<br> {{ $item->descripcion }}</td>
-                            <td class="border-b border-black">{{ $item->cantidad }}</td>
-                            <td class="border-b border-black">{{ $item->precioUni }}</td>
-                            <td class="border-b border-black">$
+                            <td style="border-bottom: 1px solid #000000" style="border-bottom: 1px solid #000000">
+                                {{ $item->codigo }}<br> {{ $item->descripcion }}</td>
+                            <td style="border-bottom: 1px solid #000000">{{ $item->cantidad }}</td>
+                            <td style="border-bottom: 1px solid #000000">{{ $item->precioUni }}</td>
+                            <td style="border-bottom: 1px solid #000000">$
                                 {{ $item->ventaGravada ?? ($item->ventaExenta ?? $item->ventaNoSuj) }}
                             </td>
                         </tr>
@@ -58,26 +59,28 @@
                     @if ($dte->resumen->tributos)
                         @foreach ($dte->resumen->tributos as $tributo)
                             <tr>
-                                <td class="border-b border-black">{{ $tributo->codigo }}<br> {{ $tributo->descripcion }}
+                                <td style="border-bottom: 1px solid #000000">{{ $tributo->codigo }}<br>
+                                    {{ $tributo->descripcion }}
                                 </td>
-                                <td class="border-b border-black"></td>
-                                <td class="border-b border-black"></td>
-                                <td class="border-b border-black">${{ $tributo->valor }}</td>
+                                <td style="border-bottom: 1px solid #000000"></td>
+                                <td style="border-bottom: 1px solid #000000"></td>
+                                <td style="border-bottom: 1px solid #000000">${{ $tributo->valor }}</td>
                             </tr>
                         @endforeach
                     @endif
                 </tbody>
             </table>
 
-            <div class="text-right font-bold mt-[10mm]">
+            <div style="margin-top: 10mm; text-align: right; font-weight: 700">
                 Monto de Compra: ${{ $dte->resumen->totalPagar }}
             </div>
 
-            <div class="text-center">
-                <img class="w-[141pt] h-auto mx-auto my-[10mm]" src="{{ $qr_portal }}" alt="Código QR">
+            <div style="text-align: center">
+                <img style="margin-left:auto; margin-right: auto; margin-top: 10mm; margin-bottom: 10mm; width: 141pt; height: auto;"
+                    src="{{ $qr_portal }}" alt="Código QR">
             </div>
 
-            <div class="text-center text-[8pt]">
+            <div style="text-align: center; font-size:8pt">
                 Descargue su factura desde el código QR,<br>
                 además hemos enviado un correo<br>
                 electrónico con los datos del documento<br>

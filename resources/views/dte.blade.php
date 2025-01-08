@@ -17,7 +17,7 @@
 @endphp
 @section('content')
 
-    <body class="m-9 font-sans text-[7pt] leading-tight">
+    <body style="margin:36px; font-size:7pt; line-height: 1.25">
         {{-- Identificacion --}}
         @include('sections.identificacion', [
             'identificacion' => $dte->identificacion,

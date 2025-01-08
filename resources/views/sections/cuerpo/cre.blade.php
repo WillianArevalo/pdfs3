@@ -1,25 +1,25 @@
-<table class="w-full mt-5 border-collapse border border-slate-500">
-    <thead class="bg-slate-100">
+<table style="width: 100%; margin-top:1.25rem; border-collapse: collapse; border: 1px solid #64748b;">
+    <thead style="background-color: #f1f5f9">
         <tr>
-            <th class="border border-slate-600">No.</th>
-            <th class="border border-slate-600">Tipo de Doc. Relacionado</th>
-            <th class="border border-slate-600">No. de Doc. Relacionado</th>
-            <th class="border border-slate-600">Fecha del Doc.</th>
-            <th class="border border-slate-600">Descripción</th>
-            <th class="border border-slate-600">Monto Sujeto<br>a Retención</th>
-            <th class="border border-slate-600">IVA Retenido</th>
+            <th style="border:1px solid #475569">No.</th>
+            <th style="border:1px solid #475569">Tipo de Doc. Relacionado</th>
+            <th style="border:1px solid #475569">No. de Doc. Relacionado</th>
+            <th style="border:1px solid #475569">Fecha del Doc.</th>
+            <th style="border:1px solid #475569">Descripción</th>
+            <th style="border:1px solid #475569">Monto Sujeto<br>a Retención</th>
+            <th style="border:1px solid #475569">IVA Retenido</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($cuerpoDocumento as $item)
             <tr>
-                <td class="border border-slate-600 text-center">{{ $item->numItem }}</td>
-                <td class="border border-slate-600 text-right">{{ $catalogs["CAT-002"][$item->tipoDte] }}</td>
-                <td class="border border-slate-600 text-center">{{ $item->numeroDocumento }}</td>
-                <td class="border border-slate-600 text-center">{{ $item->fechaEmision }}</td>
-                <td class="border border-slate-600">{{ $item->descripcion }}</td>
-                <td class="border border-slate-600 text-right">${{ formatNumber($item->montoSujetoGrav) }}</td>
-                <td class="border border-slate-600 text-right">${{ formatNumber($item->ivaRetenido) }}</td>
+                <td style="border:1px solid #475569; text-align: center">{{ $item->numItem }}</td>
+                <td style="border:1px solid #475569; text-align: right">{{ $catalogs['CAT-002'][$item->tipoDte] }}</td>
+                <td style="border:1px solid #475569; text-align: center">{{ $item->numeroDocumento }}</td>
+                <td style="border:1px solid #475569; text-align: center">{{ $item->fechaEmision }}</td>
+                <td style="border:1px solid #475569">{{ $item->descripcion }}</td>
+                <td style="border:1px solid #475569; text-align: right">${{ formatNumber($item->montoSujetoGrav) }}</td>
+                <td style="border:1px solid #475569; text-align: right">${{ formatNumber($item->ivaRetenido) }}</td>
             </tr>
         @endforeach
     </tbody>
